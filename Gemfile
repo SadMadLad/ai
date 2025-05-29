@@ -17,6 +17,12 @@ gem "solid_queue"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "thruster", require: false
+gem "torchaudio"
+gem "torchdata"
+gem "torch-rb"
+gem "torchrec"
+gem "torchtext"
+gem "torchvision"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
