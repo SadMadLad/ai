@@ -32,6 +32,7 @@ group :development, :test do
   gem "byebug"
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "pry-rails"
+  gem "rdoc"
   gem "rubocop-rails-omakase", require: false
 end
 
