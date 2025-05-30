@@ -3,6 +3,19 @@ module Torch
     class ApplicationNetwork < Torch::NN::Module
       LAYERS = %i[conv2d linear].freeze
 
+      class << self
+        def load_dict(parameters_file)
+          model = new
+          model.load_state_dict Torch.load(parameters_file)
+
+          model
+        end
+
+        def input_preprocess(input)
+          raise NotImplementedError
+        end
+      end
+
       protected
         def function(name, ...)
           Torch::NN::F.public_send(name, ...)

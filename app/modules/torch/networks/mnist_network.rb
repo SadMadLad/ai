@@ -26,6 +26,35 @@ module Torch
 
         function :log_softmax, x, 1
       end
+
+      def predict(params)
+        eval
+        prediction = nil
+
+        Torch.no_grad do
+          params = self.class.input_preprocess(params)
+          prediction = call(params)
+          prediction = prediction.argmax(1, keepdim: true)
+
+          prediction = prediction.flatten.to_i
+        end
+
+        prediction
+      end
+
+      class << self
+        def input_preprocess(params)
+          image = Vips::Image.new_from_file params[:input_image].path
+          image = TorchVision::Transforms::F.resize(image, [28, 28])
+
+          image = image.extract_band(0, n: 3) if image.bands > 3
+          image = image.colourspace(:b_w)
+
+          image = TorchVision::Transforms::F.to_tensor(image)
+          image = TorchVision::Transforms::F.normalize(image, [ 0.1307 ], [ 0.3801 ])
+          image.reshape(1, 1, 28, 28)
+        end
+      end
     end
   end
 end

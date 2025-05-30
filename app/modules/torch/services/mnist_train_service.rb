@@ -3,6 +3,7 @@ module Torch
     class MnistTrainService
       def initialize
         @dataset_path = Rails.root.join("data")
+        @model_save_path = Rails.root.join("lib", "models", "mnist.pth")
         @seed = 1
         @device = "cpu"
       end
@@ -11,14 +12,19 @@ module Torch
         set_seed
         train
         test
+        save
       end
 
       private
+        def save
+          Torch.save(model.state_dict, @model_save_path)
+        end
+
         def set_seed
           Torch.manual_seed(@seed)
         end
 
-        def train(epochs: 3)
+        def train(epochs: 10)
           1.upto(epochs) do |epoch|
             model.train
             train_loader.each_with_index do |(data, target), batch_index|
@@ -67,8 +73,8 @@ module Torch
           @model ||= Torch::Networks::MnistNetwork.new.to(@device)
         end
 
-        def optimizer(lr: 0.01)
-          @optimizer ||= Torch::Optim::Adadelta.new(model.parameters, lr:)
+        def optimizer(lr: 0.001)
+          @optimizer ||= Torch::Optim::Adam.new(model.parameters, lr:)
         end
 
         def scheduler(optimizer, step_size:, gamma: 0.7)
