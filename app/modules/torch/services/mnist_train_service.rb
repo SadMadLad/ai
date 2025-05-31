@@ -1,5 +1,6 @@
 module Torch
   module Services
+    # Service to train MnistNetwork, test, evaluate and save the weights of the model
     class MnistTrainService
       def initialize
         @dataset_path = Rails.root.join("data")
@@ -8,6 +9,7 @@ module Torch
         @device = "cpu"
       end
 
+      # :nodoc:
       def call
         set_seed
         train
@@ -16,14 +18,17 @@ module Torch
       end
 
       private
+        # :nodoc:
         def save
           Torch.save(model.state_dict, @model_save_path)
         end
 
+        # :nodoc:
         def set_seed
           Torch.manual_seed(@seed)
         end
 
+        # :nodoc:
         def train(epochs: 10)
           1.upto(epochs) do |epoch|
             model.train
@@ -45,6 +50,7 @@ module Torch
           end
         end
 
+        # :nodoc:
         def test
           model.eval
           test_loss = 0
@@ -69,26 +75,32 @@ module Torch
           ]
         end
 
+        # :nodoc:
         def model
           @model ||= Torch::Networks::MnistNetwork.new.to(@device)
         end
 
+        # :nodoc:
         def optimizer(lr: 0.001)
           @optimizer ||= Torch::Optim::Adam.new(model.parameters, lr:)
         end
 
+        # :nodoc:
         def scheduler(optimizer, step_size:, gamma: 0.7)
           @scheduler ||= Torch::Optim::LRScheduler::StepLR.new(optimizer, step_size:, gamma:)
         end
 
+        # :nodoc:
         def train_loader
           @train_loader ||= dataset_loader(train: true)
         end
 
+        # :nodoc:
         def test_loader
           @test_loader ||= dataset_loader(train: false)
         end
 
+        # :nodoc:
         def dataset_loader(train:, download: true, shuffle: true, batch_size: 64)
           dataset = TorchVision::Datasets::MNIST.new(
             @dataset_path,

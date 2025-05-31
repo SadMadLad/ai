@@ -1,5 +1,6 @@
 module Torch
   module Networks
+    # Neural Network for training MNIST dataset
     class MnistNetwork < ApplicationNetwork
       def initialize
         super
@@ -27,6 +28,7 @@ module Torch
         function :log_softmax, x, 1
       end
 
+      # Make a prediction about the image
       def predict(params)
         eval
         prediction = nil
@@ -43,6 +45,7 @@ module Torch
       end
 
       class << self
+        # Preprocesses a tempfile (image) and prepare it for prediction
         def input_preprocess(params)
           image = Vips::Image.new_from_file params[:input_image].path
           image = TorchVision::Transforms::F.resize(image, [28, 28])
