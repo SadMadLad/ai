@@ -6,7 +6,7 @@ class MlModel
     # - <tt>args</tt>
     #   - <tt>id [String, Symbol]</tt>: Key value for ML_MODELS.
     #   - <tt>with_details [Boolean]
-    # - returns <tt>[Nil, Data[ApplicationNetwork, details: DetailStruct(:title, :description), prediction_params: Array, id: Symbol]]</tt>
+    # - returns <tt>[Nil, MlModelStruct]</tt>
     def find(id)
       ML_MODELS[id.to_sym]
     end

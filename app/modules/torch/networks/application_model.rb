@@ -3,7 +3,7 @@ module Torch
   # Module containing all the neural networks developed using <tt>torch-rb</tt>
   module Networks
     # Base Network for Training
-    class ApplicationNetwork < Torch::NN::Module
+    class ApplicationModel < Torch::NN::Module
       # Constant later used to declare convenient methods for Neural Network layers
       # e.g., <tt>:conv2d</tt> is <tt>Torch::NN::Conv2d</tt>
       LAYERS = %i[conv2d linear].freeze

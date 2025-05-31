@@ -1,7 +1,7 @@
 module Torch
   # Module containing all the services for <tt>torch-rb</tt> networks.
   module Services
-    # Service to train <tt>MnistNetwork</tt>, test, evaluate and save the weights of the model
+    # Service to train <tt>MnistModel</tt>, test, evaluate and save the weights of the model
     class MnistTrainService
       # :nodoc:
       def initialize
@@ -79,7 +79,7 @@ module Torch
 
         # :nodoc:
         def model
-          @model ||= Torch::Networks::MnistNetwork.new.to(@device)
+          @model ||= Torch::Networks::MnistModel.new.to(@device)
         end
 
         # :nodoc:

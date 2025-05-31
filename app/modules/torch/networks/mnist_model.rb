@@ -1,7 +1,7 @@
 module Torch
   module Networks
     # Neural Network to train over mnist
-    class MnistNetwork < ApplicationNetwork
+    class MnistModel < ApplicationModel
       # :nodoc:
       def initialize
         super

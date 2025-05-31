@@ -13,7 +13,7 @@ Rails.application.config.after_initialize do
   mnist_model_path = Rails.root.join("lib", "models", "mnist.pth").to_s
 
   ML_MODELS[:mnist] = Structs::MlModelStruct.new(
-    Torch::Networks::MnistNetwork.load_dict(mnist_model_path),
+    Torch::Networks::MnistModel.load_dict(mnist_model_path),
     Structs::DetailStruct.new("MNIST", "Cool MNIST Model"),
     [ { input_image: :image } ],
     :mnist
