@@ -1,7 +1,9 @@
 module Torch
+  # Module containing all the services for <tt>torch-rb</tt> networks.
   module Services
-    # Service to train MnistNetwork, test, evaluate and save the weights of the model
+    # Service to train <tt>MnistNetwork</tt>, test, evaluate and save the weights of the model
     class MnistTrainService
+      # :nodoc:
       def initialize
         @dataset_path = Rails.root.join("data")
         @model_save_path = Rails.root.join("lib", "models", "mnist.pth")

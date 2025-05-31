@@ -1,9 +1,18 @@
+# Convenient Wrapper for querying neural networks eager loaded on Rails initialization, under <tt>config/initializers/ml_models.rb</tt>
 class MlModel
   class << self
-    def find(id, with_details: true)
+    # Query model based on symbols
+    #
+    # - <tt>args</tt>
+    #   - <tt>id [String, Symbol]</tt>: Key value for ML_MODELS.
+    #   - <tt>with_details [Boolean]
+    # - returns <tt>[Nil, Data[ApplicationNetwork, details: DetailStruct(:title, :description), prediction_params: Array, id: Symbol]]</tt>
+    def find(id)
       ML_MODELS[id.to_sym]
     end
 
+    # Enlist all the models
+    # - returns
     def all
       ML_MODELS.values.pluck(:details)
     end

@@ -12,9 +12,9 @@ Rails.application.config.after_initialize do
 
   mnist_model_path = Rails.root.join("lib", "models", "mnist.pth").to_s
 
-  ML_MODELS[:mnist] = MlModelStruct.new(
+  ML_MODELS[:mnist] = Structs::MlModelStruct.new(
     Torch::Networks::MnistNetwork.load_dict(mnist_model_path),
-    DetailStruct.new("MNIST", "Cool MNIST Model"),
+    Structs::DetailStruct.new("MNIST", "Cool MNIST Model"),
     [ { input_image: :image } ],
     :mnist
   ) if File.exist?(mnist_model_path)
