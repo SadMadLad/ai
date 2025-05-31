@@ -1,0 +1,25 @@
+Sat, 31 May 2025 11:47:59 +0500
+app/assets/builds/tailwind.css	Fri, 30 May 2025 23:29:13 +0500
+app/assets/images/2.png	Sat, 31 May 2025 01:05:52 +0500
+app/assets/images/6.jpg	Fri, 30 May 2025 19:47:47 +0500
+app/assets/images/6.png	Sat, 31 May 2025 00:43:04 +0500
+app/assets/images/8.png	Sat, 31 May 2025 01:23:05 +0500
+app/assets/stylesheets/application.css	Fri, 30 May 2025 21:33:57 +0500
+app/assets/tailwind/application.css	Fri, 30 May 2025 21:40:39 +0500
+app/controllers/application_controller.rb	Sat, 31 May 2025 11:13:31 +0500
+app/controllers/ml_models_controller.rb	Sat, 31 May 2025 11:47:38 +0500
+app/helpers/application_helper.rb	Sat, 31 May 2025 11:16:44 +0500
+app/helpers/ml_models_helper.rb	Sat, 31 May 2025 11:16:58 +0500
+app/javascript/application.js	Wed, 28 May 2025 14:55:47 +0500
+app/javascript/controllers/application.js	Wed, 28 May 2025 14:55:47 +0500
+app/javascript/controllers/hello_controller.js	Wed, 28 May 2025 14:55:47 +0500
+app/javascript/controllers/index.js	Wed, 28 May 2025 14:55:47 +0500
+app/jobs/application_job.rb	Sat, 31 May 2025 11:17:14 +0500
+app/mailers/application_mailer.rb	Sat, 31 May 2025 11:47:13 +0500
+app/models/application_record.rb	Sat, 31 May 2025 11:17:27 +0500
+app/models/concerns/structs.rb	Sat, 31 May 2025 11:46:56 +0500
+app/models/ml_model.rb	Sat, 31 May 2025 11:40:21 +0500
+app/modules/torch/networks/application_network.rb	Sat, 31 May 2025 11:11:51 +0500
+app/modules/torch/networks/mnist_network.rb	Sat, 31 May 2025 11:10:49 +0500
+app/modules/torch/services/mnist_train_service.rb	Sat, 31 May 2025 10:58:28 +0500
+app/views/pwa/service-worker.js	Wed, 28 May 2025 14:55:31 +0500
