@@ -57,7 +57,7 @@ module Torch
         # - returns a <tt>Tensor</tt> with reshaped image
         def input_preprocess(params)
           image = Vips::Image.new_from_file params[:input_image].path
-          image = TorchVision::Transforms::F.resize(image, [28, 28])
+          image = TorchVision::Transforms::F.resize(image, [ 28, 28 ])
 
           image = image.extract_band(0, n: 3) if image.bands > 3
           image = image.colourspace(:b_w)
