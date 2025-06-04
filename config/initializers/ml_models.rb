@@ -7,7 +7,7 @@ Rails.application.config.after_initialize do
   ML_MODELS[:mnist] = Structs.model(
     Torch::Models::MnistModel.load_dict(mnist_model_path),
     Structs.details("MNIST", "Cool MNIST Model"),
-    { input_image: { type: :image, label: 'Input Image' } },
+    { input_image: { type: :image, label: "Input Image" } },
     :mnist
   ) if File.exist?(mnist_model_path)
 
@@ -25,7 +25,7 @@ Rails.application.config.after_initialize do
       },
       citric_acid: {
         type: :number,
-        label: "Citric Acid",
+        label: "Citric Acid"
       },
       residual_sugar: {
         type: :number,

@@ -3,7 +3,7 @@ module Rumale
     class ApplicationModel
       class << self
         def save(path_to_save, model)
-          File.open(path_to_save.to_s, 'wb') { |file| file.write(Marshal.dump(model)) }
+          File.open(path_to_save.to_s, "wb") { |file| file.write(Marshal.dump(model)) }
         end
 
         def load(path_to_model)

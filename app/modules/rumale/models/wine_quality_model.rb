@@ -44,7 +44,7 @@ module Rumale
         end
 
         def dataset
-          x = CsvUtils.parse(path_to_dataset, [:to_f] * 12, col_sep: ";")
+          x = CsvUtils.parse(path_to_dataset, [ :to_f ] * 12, col_sep: ";")
           x = Numo::DFloat[*x]
 
           x, y = x[true, 0..-2], x[true, -1]
@@ -81,10 +81,10 @@ module Rumale
 
         def param_grid
           @param_grid ||= {
-            pca__n_components: [7],
-            forest__n_estimators: [100],
-            forest__max_depth: [7],
-            forest__min_samples_leaf: [5]
+            pca__n_components: [ 7 ],
+            forest__n_estimators: [ 100 ],
+            forest__max_depth: [ 7 ],
+            forest__min_samples_leaf: [ 5 ]
           }
         end
     end
