@@ -1,7 +1,7 @@
 class CsvUtils
   class << self
-    def parse(csv_file, parse_array, col_sep: ',', has_headers: true)
-      csv_data = CSV.parse File.read(csv_file), col_sep: ';'
+    def parse(csv_file, parse_array, col_sep: ",", has_headers: true)
+      csv_data = CSV.parse(File.read(csv_file), col_sep:)
       csv_data = csv_data[1..-1] if has_headers
 
       csv_data.map do |csv_row|

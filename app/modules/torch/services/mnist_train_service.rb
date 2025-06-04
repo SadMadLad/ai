@@ -79,7 +79,7 @@ module Torch
 
         # :nodoc:
         def model
-          @model ||= Torch::Networks::MnistModel.new.to(@device)
+          @model ||= Torch::Models::MnistModel.new.to(@device)
         end
 
         # :nodoc:

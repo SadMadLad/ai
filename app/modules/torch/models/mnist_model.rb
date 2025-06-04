@@ -1,5 +1,5 @@
 module Torch
-  module Networks
+  module Models
     # Neural Network to train over mnist
     class MnistModel < ApplicationModel
       # :nodoc:
@@ -40,7 +40,7 @@ module Torch
         prediction = nil
 
         Torch.no_grad do
-          params = self.class.input_preprocess(params)
+          params = self.class.preprocess_input(params)
           prediction = call(params)
           prediction = prediction.argmax(1, keepdim: true)
 
@@ -55,7 +55,7 @@ module Torch
         # - <tt>args</tt>
         #   - <tt>params [Hash, ActionController::Parameters]</tt>: Parameters containing a temp input file for preprocessing
         # - returns a <tt>Tensor</tt> with reshaped image
-        def input_preprocess(params)
+        def preprocess_input(params)
           image = Vips::Image.new_from_file params[:input_image].path
           image = TorchVision::Transforms::F.resize(image, [ 28, 28 ])
 

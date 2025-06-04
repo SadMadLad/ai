@@ -9,6 +9,7 @@ gem "importmap-rails"
 gem "jbuilder"
 gem "kamal", require: false
 gem "ostruct"
+gem "parallel"
 gem "pg", "~> 1.1"
 gem "propshaft"
 gem "puma", ">= 5.0"

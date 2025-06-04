@@ -1,5 +1,10 @@
 <div>
   <ul class="list-disc">
-    <li><%= link_to 'MNIST', ml_model_path(:mnist) %></li>
+    <% [
+      ['MNIST', :mnist],
+      ['Wine Quality', :wine_quality]
+    ].each do |text, id| %>
+      <li><%= link_to text, ml_model_path(id) %></li>
+    <% end %>
   </ul>
 </div>

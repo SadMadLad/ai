@@ -25,6 +25,6 @@ class MlModelsController < ApplicationController
 
     # :nodoc:
     def prediction_params
-      params.require(:prediction).permit(*@ml_model.required_params)
+      params.require(:prediction).permit(*@ml_model.prediction_params.keys)
     end
 end

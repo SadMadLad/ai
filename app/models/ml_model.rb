@@ -14,7 +14,7 @@ class MlModel
     # Enlist all the models
     # - returns
     def all
-      ML_MODELS.values.pluck(:details)
+      ML_MODELS.values.map(&:details)
     end
 
     alias_method :[], :find

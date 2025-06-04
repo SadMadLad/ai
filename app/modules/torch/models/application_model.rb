@@ -1,7 +1,7 @@
 # Module of <tt>torch-rb</tt> gem.
 module Torch
   # Module containing all the neural networks developed using <tt>torch-rb</tt>
-  module Networks
+  module Models
     # Base Network for Training
     class ApplicationModel < Torch::NN::Module
       # Constant later used to declare convenient methods for Neural Network layers
@@ -22,7 +22,7 @@ module Torch
         end
 
         # :nodoc:
-        def input_preprocess(input)
+        def preprocess_input(_params)
           raise NotImplementedError
         end
       end

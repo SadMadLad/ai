@@ -1,5 +1,5 @@
 # Collection of Structs beings used throughout the application
-module Structs
+class Structs
   # Struct to store details about details of Machine Learning models
   DetailStruct = Data.define(:title, :description)
 
@@ -9,6 +9,16 @@ module Structs
 
     def required_params
       prediction_params.map(&:keys).flatten
+    end
+  end
+
+  class << self
+    def model(...)
+      MlModelStruct.new(...)
+    end
+
+    def details(...)
+      DetailStruct.new(...)
     end
   end
 end

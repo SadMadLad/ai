@@ -3,18 +3,22 @@
   <p><%= @ml_model.details.description %></p>
 
   <%= form_with url: predict_ml_model_path(@ml_model.id), scope: :prediction, method: :post, class: 'mt-4' do |form| %>
-    <% @prediction_params.each do |prediction_param| %>
-      <% prediction_param.each do |param_name, param_type| %>
-        <% if param_type == :image %>
-          <div class="flex flex-col gap-1.5">
-            <%= form.label param_name, class: 'font-bold' %>
-            <%= form.file_field param_name, accept: 'image/png,image/gif,image/jpg,image/jpeg' %>
-          </div>
-        <% end %>
+    <% @prediction_params.each do |label_sym, label_data| %>
+      <% case label_data[:type] %>
+      <% when :image %>
+        <div class="flex flex-col gap-1.5">
+          <%= form.label label_sym, class: 'font-bold' %>
+          <%= form.file_field label_sym, accept: 'image/png,image/gif,image/jpg,image/jpeg' %>
+        </div>
+      <% when :number %>
+        <div class="flex flex-col gap-1.5 mb-2">
+          <%= form.label label_sym, class: 'font-bold' %>
+          <%= form.number_field label_sym, class: 'text-lg border rounded-lg border-gray-400 p-1.5' %>
+        </div>
       <% end %>
-
-      <%= form.submit 'Predict', class: 'inline-block px-2.5 py-1.5 rounded-lg bg-cyan-500 mt-2.5 text-white font-semibold' %>
     <% end %>
+
+    <%= form.submit 'Predict', class: 'inline-block px-2.5 py-1.5 rounded-lg bg-cyan-500 mt-2.5 text-white font-semibold' %>
   <% end %>
 
   <div class="my-4" id="prediction">
