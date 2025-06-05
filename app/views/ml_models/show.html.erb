@@ -12,7 +12,7 @@
         </div>
       <% when :number %>
         <div class="flex flex-col gap-1.5 mb-2">
-          <%= form.label label_sym, class: 'font-bold' %>
+          <%= form.label label_sym, label_data[:label], class: 'font-bold' %>
           <%= form.number_field label_sym, class: 'text-lg border rounded-lg border-gray-400 p-1.5' %>
         </div>
       <% end %>
