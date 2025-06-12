@@ -122,9 +122,7 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.31.1-x86_64-linux-gnu)
-      bigdecimal
-      rake (>= 13)
+    google-protobuf (3.25.8)
     googleapis-common-protos-types (1.20.0)
       google-protobuf (>= 3.18, < 5.a)
     grpc (1.72.0-x86_64-linux)
@@ -498,6 +496,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   fiddle
+  google-protobuf (~> 3.25.4)
   grpc-tools
   gruf
   image_processing (~> 1.2)

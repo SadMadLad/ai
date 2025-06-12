@@ -6,6 +6,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
 gem "dotenv-rails"
 gem "fiddle"
+gem "google-protobuf", "~> 3.25.4"
 gem "grpc-tools"
 gem "gruf"
 gem "image_processing", "~> 1.2"
