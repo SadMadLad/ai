@@ -122,6 +122,23 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (4.31.1-x86_64-linux-gnu)
+      bigdecimal
+      rake (>= 13)
+    googleapis-common-protos-types (1.20.0)
+      google-protobuf (>= 3.18, < 5.a)
+    grpc (1.72.0-x86_64-linux)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.72.0)
+    gruf (2.21.0)
+      activesupport (> 4)
+      concurrent-ruby (> 1)
+      grpc (~> 1.10)
+      grpc-tools (~> 1.10)
+      json (>= 2.3)
+      slop (>= 4.6)
+      zeitwerk (>= 2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -393,6 +410,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    slop (4.10.1)
     smarter_csv (1.14.4)
     solid_cable (3.0.8)
       actioncable (>= 7.2)
@@ -480,6 +498,8 @@ DEPENDENCIES
   debug
   dotenv-rails
   fiddle
+  grpc-tools
+  gruf
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
@@ -490,7 +510,7 @@ DEPENDENCIES
   propshaft
   pry-rails
   puma (>= 5.0)
-  pycall (~> 1.5.1)
+  pycall
   rails
   rdoc
   rubocop-rails-omakase
