@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-require 'gruf'
+require "gruf"
 
-proto_dir = File.join(Rails.root, 'lib', 'proto')
+proto_dir = File.join(Rails.root, "lib", "services")
 $LOAD_PATH.unshift(proto_dir)
 
-require 'app/proto/products_services_pb'
+Dir["lib/services/*.rb"].each { |proto_file_service| require File.basename(proto_file_service) }
 
 Gruf.configure do |c|
-  c.interceptors.use(::Gruf::Interceptors::Instrumentation::RequestLogging::Interceptor, formatter: :logstash)
-  c.error_serializer = Gruf::Serializers::Errors::Json
+  c.default_client_host = ENV["GRPC_SERVER_URL"]
 end
