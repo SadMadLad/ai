@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_12_120930) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_14_013458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "vector"
 
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.float "price"
+  create_table "embeddings", force: :cascade do |t|
+    t.string "embeddable_type", null: false
+    t.bigint "embeddable_id", null: false
+    t.string "embedding_model"
+    t.vector "embedding", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["embeddable_type", "embeddable_id"], name: "index_embeddings_on_embeddable"
+  end
+
+  create_table "raw_payloads", force: :cascade do |t|
+    t.string "payload_type", null: false
+    t.text "payload", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
