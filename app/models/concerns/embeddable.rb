@@ -2,7 +2,7 @@ module Embeddable
   extend ActiveSupport::Concern
 
   included do
-    class_attribute :embeddable_column
+    class_attribute :embeddable
     has_many :embeddings, as: :embeddable, dependent: :destroy
   end
 
@@ -12,15 +12,13 @@ module Embeddable
     end
 
     def embed(records, embedding_models:)
-      raise ArgumentError, "Please set the embeddable_column first" if embeddable_column.blank?
+      raise ArgumentError, "Please set the embeddable first" if embeddable.blank?
 
       EmbeddingService.call(record: records, embedding_models:)
     end
 
-    def set_embeddable_column(name)
-      raise ArgumentError, "Column must exist" unless column_names.include?(name.to_s)
-
-      self.embeddable_column = name.to_sym
+    def set_embeddable(name)
+      self.embeddable = name.to_sym
     end
 
     def neighbors(record, embedding_model:, distance: "euclidean")
@@ -36,7 +34,7 @@ module Embeddable
   end
 
   def embed(embedding_models:)
-    raise ArgumentError, "Please set the embeddable_column first" if self.class.embeddable_column.blank?
+    raise ArgumentError, "Please set the embeddable first" if self.class.embeddable.blank?
 
     embedding_models = Array(embedding_models)
 

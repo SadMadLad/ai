@@ -1,7 +1,7 @@
 class RawPayload < ApplicationRecord
   include Embeddable
 
-  set_embeddable_column :payload
+  set_embeddable :payload
 
   validates :payload, presence: true
 
