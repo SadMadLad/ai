@@ -1,5 +1,5 @@
 class OllamaClient < ApplicationClient
-  delegate :embed, :summarize, to: :@client
+  delegate :summarize, to: :@client
 
   MODELS = {
     gemma: "gemma3:4b",

@@ -1,11 +1,11 @@
 class EmbeddingService < ApplicationService
   required_params :record, :embedding_models
 
-  BATCH_SIZE = 32
+  BATCH_SIZE = 100
 
   def call
     @client = OllamaClient.new
-    @embedding_models = Array(@embedding_models)
+    @embedding_models = Array(@embedding_models).uniq
 
     if single_record?
       process_single_record

@@ -10,11 +10,18 @@
 
 
 raw_payloads = [
-  "English is one of the languages of all time",
   "Bruce Lee",
   "The Last Dragon",
   "Kung Fu",
-  "Urdu, Hindi and Bengali are also languages of all time."
+  "Urdu, Hindi and Bengali are also languages of all time.",
+  "YouTube is a video streaming platform",
+  "Is Cobalt the best computer language of all time?",
+  "Time for some hardcore banking!",
+  "Ninjutsu is even real? Or not? I can't say much",
+  "Dragunov does Combat Sambo in Tekken. Was not aware.",
+  "Is Khabib the greatest UFC fighter of all time?",
+  "Rust is making big strides when it comes to tooling.",
+  "The battle for fastest programming language of all time isn't new. Zig is currently leading."
 ].map { |text| { payload_type: "text", payload: text } }
 
 raw_payloads = RawPayload.create raw_payloads

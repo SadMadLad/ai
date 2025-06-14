@@ -11,25 +11,34 @@ module Embeddable
       Embedding.where **{ embeddable_type: name.to_s, model: }.compact
     end
 
-    def embed(records, embedding_models:)
+    def embed(records, embedding_models: %i[ deepseek_sm llama_sm ])
       raise ArgumentError, "Please set the embeddable first" if embeddable.blank?
 
       EmbeddingService.call(record: records, embedding_models:)
+    end
+
+    def embed_all(...)
+      embed(self.all, ...)
     end
 
     def set_embeddable(name)
       self.embeddable = name.to_sym
     end
 
-    def neighbors(record, embedding_model:, distance: "euclidean")
+    def neighbors(record, embedding_model: :deepseek_sm, distance: "euclidean")
       vector = record.embeddings.find_by(embedding_model:)
 
-      embeddings
+      neighbor_ids = embeddings
         .public_send(embedding_model)
         .nearest_neighbors(:embedding, vector.embedding, distance:)
-        .includes(:embeddable)
         .excluding(vector)
-        .map(&:embeddable)
+        .pluck(:embeddable_id)
+
+
+      where(id: neighbor_ids)
+        .order(
+          Arel.sql("array_position(ARRAY[#{neighbor_ids.join(',')}]::int[], id)")
+        )
     end
   end
 
