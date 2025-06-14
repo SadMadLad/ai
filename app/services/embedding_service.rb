@@ -3,18 +3,24 @@ class EmbeddingService < ApplicationService
 
   def call
     @client = OllamaClient.new
+    @record = Array(@record)
+    @embeddable_column = @record.first.embeddable_column
 
-    embedding_data = Parallel.map(@embedding_models, in_threads: @embedding_models.length) do |embedding_model|
-      embedding = @client.embed(model: OllamaClient.models[embedding_model], text: @record[embeddable_column]).first
-
-      { embeddable: @record, embedding:, embedding_model: }
-    end
-
-    @record.embeddings.create! embedding_data
+    process_records
   end
 
   private
-    def embeddable_column
-      @record.embeddable_column
+    def process_records
+      all_embeddings = @record.map do |record|
+        @embedding_models.each_slice(2).map do |embedding_models|
+          embedding_data = Parallel.map(embedding_models, in_threads: embedding_models.length) do |embedding_model|
+            embedding = @client.embed(model: OllamaClient.models[embedding_model], text: record[@embeddable_column]).first
+
+            { embeddable: record, embedding:, embedding_model: }
+          end
+        end
+      end
+
+      Embedding.create all_embeddings.flatten
     end
 end

@@ -1,7 +1,7 @@
 class Embedding < ApplicationRecord
   belongs_to :embeddable, polymorphic: true
 
-  validates :embedding, presence: true, uniqueness: { scope: %i[ embedding_model embeddable_type embedding_model ] }
+  validates :embedding_model, presence: true, uniqueness: { scope: %i[ embeddable_id embeddable_type ] }
 
   enum :embedding_model, OllamaClient.embedding_models
 end

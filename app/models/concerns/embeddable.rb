@@ -11,6 +11,12 @@ module Embeddable
       Embedding.where **{ embeddable_type: name.to_s, model: }.compact
     end
 
+    def embed(records, embedding_models:)
+      raise ArgumentError, "Please set the embeddable_column first" if embeddable_column.blank?
+
+      EmbeddingService.call(record: records, embedding_models:)
+    end
+
     def set_embeddable_column(name)
       raise ArgumentError, "Column must exist" unless column_names.include?(name.to_s)
 
