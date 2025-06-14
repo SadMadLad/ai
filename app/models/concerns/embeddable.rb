@@ -25,7 +25,7 @@ module Embeddable
       self.embeddable = name.to_sym
     end
 
-    def neighbors(record, embedding_model: :deepseek_sm, distance: "euclidean")
+    def neighbors(record, embedding_model: :deepseek_sm, distance: "cosine")
       vector = record.embeddings.find_by(embedding_model:)
 
       neighbor_ids = embeddings
