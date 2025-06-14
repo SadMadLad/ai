@@ -4,7 +4,7 @@ class EmbeddingService < ApplicationService
   def call
     @client = OllamaClient.new
 
-    embedding_data = @embedding_models.map do |embedding_model|
+    embedding_data = Parallel.map(@embedding_models, in_threads: @embedding_models.length) do |embedding_model|
       embedding = @client.embed(model: OllamaClient.models[embedding_model], text: @record[embeddable_column]).first
 
       { embeddable: @record, embedding:, embedding_model: }
