@@ -22,6 +22,17 @@ module Embeddable
 
       self.embeddable_column = name.to_sym
     end
+
+    def neighbors(record, embedding_model:, distance: "euclidean")
+      vector = record.embeddings.find_by(embedding_model:)
+
+      embeddings
+        .public_send(embedding_model)
+        .nearest_neighbors(:embedding, vector.embedding, distance:)
+        .includes(:embeddable)
+        .excluding(vector)
+        .map(&:embeddable)
+    end
   end
 
   def embed(embedding_models:)
@@ -30,5 +41,9 @@ module Embeddable
     embedding_models = Array(embedding_models)
 
     EmbeddingService.call(record: self, embedding_models:)
+  end
+
+  def neighbors(...)
+    self.class.neighbors(self, ...)
   end
 end

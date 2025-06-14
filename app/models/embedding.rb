@@ -1,4 +1,6 @@
 class Embedding < ApplicationRecord
+  has_neighbors :embedding
+
   belongs_to :embeddable, polymorphic: true
 
   validates :embedding_model, presence: true, uniqueness: { scope: %i[ embeddable_id embeddable_type ] }
