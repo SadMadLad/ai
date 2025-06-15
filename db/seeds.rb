@@ -8,20 +8,22 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+RawPayload.delete_all
 
-raw_payloads = [
-  "Bruce Lee",
-  "The Last Dragon",
-  "Kung Fu",
-  "Urdu, Hindi and Bengali are also languages of all time.",
-  "YouTube is a video streaming platform",
-  "Is Cobalt the best computer language of all time?",
-  "Time for some hardcore banking!",
-  "Ninjutsu is even real? Or not? I can't say much",
-  "Dragunov does Combat Sambo in Tekken. Was not aware.",
-  "Is Khabib the greatest UFC fighter of all time?",
-  "Rust is making big strides when it comes to tooling.",
-  "The battle for fastest programming language of all time isn't new. Zig is currently leading."
-].map { |text| { payload_type: "text", payload: text } }
+raw_payloads = []
 
-raw_payloads = RawPayload.create raw_payloads
+20.times do
+  raw_payloads << Faker::Books::Dune.saying
+  raw_payloads << Faker::Books::Dune.quote
+  raw_payloads << Faker::Movies::TheRoom.quote
+  raw_payloads << Faker::Movie.quote
+  raw_payloads << Faker::Quote.famous_last_words
+  raw_payloads << Faker::Quote.matz
+  raw_payloads << Faker::Quote.robin
+end
+
+raw_payloads = raw_payloads.uniq.map do |payload|
+  { payload_type: "text", payload: }
+end
+
+RawPayload.create(raw_payloads)

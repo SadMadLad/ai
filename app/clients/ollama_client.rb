@@ -12,7 +12,7 @@ class OllamaClient < ApplicationClient
 
   def initialize(model: :deepseek, options: {})
     @client = Langchain::LLM::Ollama.new(
-      url: ENV["OLLAMA_URL"],
+      url: ENV["OLLAMA_API_BASE"],
       default_options: {
         embedding_model: MODELS[model],
         completion_model: model,

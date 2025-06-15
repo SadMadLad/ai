@@ -25,15 +25,23 @@ module Embeddable
       self.embeddable = name.to_sym
     end
 
-    def neighbors(record, embedding_model: :deepseek_sm, distance: "cosine")
+    def nearest_neighbors(record, embedding_model: :deepseek_sm, distance: "cosine")
       vector = record.embeddings.find_by(embedding_model:)
 
+      neighbors(vector.embedding, embedding_model:, distance:).excluding(record)
+    end
+
+    def recommendations(query, embedding_model: :deepseek_sm, distance: "cosine")
+      query_embedding = OllamaClient.new.embed(model: OllamaClient.embedding_models[embedding_model], text: query).first
+
+      neighbors(query_embedding, embedding_model:, distance:)
+    end
+
+    def neighbors(query_embedding, embedding_model: :deepseek_sm, distance: "cosine")
       neighbor_ids = embeddings
         .public_send(embedding_model)
-        .nearest_neighbors(:embedding, vector.embedding, distance:)
-        .excluding(vector)
+        .nearest_neighbors(:embedding, query_embedding, distance:)
         .pluck(:embeddable_id)
-
 
       where(id: neighbor_ids)
         .order(
@@ -50,7 +58,7 @@ module Embeddable
     EmbeddingService.call(record: self, embedding_models:)
   end
 
-  def neighbors(...)
-    self.class.neighbors(self, ...)
+  def nearest_neighbors(...)
+    self.class.nearest_neighbors(self, ...)
   end
 end

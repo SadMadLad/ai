@@ -5,11 +5,21 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+  controller :static do
+    get :index
+  end
+
   resources :ml_models, only: %i[index show] do
     member do
       post :predict
     end
   end
 
-  root "ml_models#index"
+  resources :raw_payloads, only: :index do
+    collection do
+      get :search
+    end
+  end
+
+  root "static#index"
 end
