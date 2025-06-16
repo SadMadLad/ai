@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get :index
   end
 
+  resource :temporary_chat, only: %i[show create]
+
   resources :ml_models, only: %i[index show] do
     member do
       post :predict

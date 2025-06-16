@@ -32,7 +32,7 @@ module Embeddable
     end
 
     def recommendations(query, embedding_model: :deepseek_sm, distance: "cosine")
-      query_embedding = OllamaClient.new.embed(model: OllamaClient.embedding_models[embedding_model], text: query).first
+      query_embedding = OllamaClient.new(embedding_model:).embed(text: query).first
 
       neighbors(query_embedding, embedding_model:, distance:)
     end

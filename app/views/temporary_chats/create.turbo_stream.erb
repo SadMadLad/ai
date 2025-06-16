@@ -1,0 +1,3 @@
+<%= turbo_stream.append chat_id(@chat.uuid) do %>
+  <%= render "message", message: @chat.message %>
+<% end %>
