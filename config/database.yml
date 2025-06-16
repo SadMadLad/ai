@@ -22,10 +22,14 @@ default: &default
   username: postgres
   password: postgres
 
-
 development:
-  <<: *default
-  database: ai_development
+  primary:
+    <<: *default
+    database: ai_development
+
+  queue:
+    <<: *default
+    migrations_paths: db/queue_schema
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
