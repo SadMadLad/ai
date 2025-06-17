@@ -1,5 +1,5 @@
 class ChatJob < ApplicationJob
   def perform(chat)
-    TemporaryChannel.respond(chat)
+    TemporaryChatChannel.respond(chat)
   end
 end
