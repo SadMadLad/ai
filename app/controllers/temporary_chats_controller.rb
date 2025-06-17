@@ -6,7 +6,7 @@ class TemporaryChatsController < ApplicationController
   def create
     @chat = OpenStruct.new(chat_params)
 
-    TemporaryChannel.respond(@chat)
+    ChatJob.perform_later(@chat)
   end
 
   private

@@ -11,7 +11,7 @@ class OllamaClient < ApplicationClient
     deepseek_sm: "deepseek-r1:1.5b",
     deepseek_lg: "deepseek-r1:7b",
 
-    qwen: "qwem2.5:3b",
+    qwen: "qwen2.5vl:3b",
     qwen_lg: "qwen2.5:7b",
 
     moondream_sm: "moondream:latest"

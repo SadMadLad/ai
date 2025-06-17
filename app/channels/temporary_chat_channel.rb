@@ -1,4 +1,4 @@
-class TemporaryChannel < ApplicationCable::Channel
+class TemporaryChatChannel < ApplicationCable::Channel
   def subscribed
     stream_from "chats_#{params[:uuid]}"
   end

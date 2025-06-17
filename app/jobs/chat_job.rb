@@ -1,6 +1,5 @@
-class TempJob < ApplicationJob
-  def perform
-    p '123123123'
-    123
+class ChatJob < ApplicationJob
+  def perform(chat)
+    TemporaryChannel.respond(chat)
   end
 end
