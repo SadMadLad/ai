@@ -450,7 +450,7 @@ GEM
       websocket (~> 1.0)
     slop (4.10.1)
     smarter_csv (1.14.4)
-    solid_cable (3.0.8)
+    solid_cable (3.0.10)
       actioncable (>= 7.2)
       activejob (>= 7.2)
       activerecord (>= 7.2)
